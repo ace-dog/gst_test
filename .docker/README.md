@@ -1,0 +1,3 @@
+- run dev environment `docker-compose up --build -d`
+- bash into dev environment `sudo docker exec -it gsttest bash`
+- stop dev environment `docker-compose down`

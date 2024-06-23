@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  gsttest:
+    image: ace-dog/gsttest
+    container_name: gsttest
+    build:
+      context: .
+      dockerfile: image
+    privileged: true
+    working_dir: /root/workspace
+    network_mode: host
+    volumes:
+      - ../:/root/workspace
