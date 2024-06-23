@@ -3,9 +3,7 @@ services:
   gsttest:
     image: ace-dog/gsttest
     container_name: gsttest
-    build:
-      context: .
-      dockerfile: image
+    build: .
     privileged: true
     working_dir: /root/workspace
     network_mode: host
