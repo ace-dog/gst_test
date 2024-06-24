@@ -1,3 +1,0 @@
-[submodule "gstreamer"]
-	path = gstreamer
-	url = https://github.com/ace-dog/gstreamer.git
