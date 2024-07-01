@@ -23,7 +23,7 @@ RUN tar xf /root/toolchains/cmake/cmake-$CMakeVersion-linux-x86_64.tar.gz -C /ro
 RUN ln -sf /root/toolchains/cmake/cmake-$CMakeVersion-linux-x86_64/bin/* /usr/local/bin
 RUN rm -rf /root/toolchains/cmake/cmake-$CMakeVersion-linux-x86_64.tar.gz
 # install gstreamer
-RUN apt-get install -y libgstreamer1.0-dev 
+# RUN apt-get install -y libgstreamer1.0-dev 
 # create workspace
 RUN mkdir -p /root/workspace
 WORKDIR /root/workspace

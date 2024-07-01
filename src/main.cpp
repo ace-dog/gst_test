@@ -29,33 +29,8 @@ int main(int argc, char *argv[]) {
     sink = gst_element_factory_make("srtsink", "sink");
 
     // Check if all elements are created successfully
-    if (!source ) {
-        g_printerr("Failed to create source.\n");
-        return -1;
-    }
-
-   if (!videoconvert ) {
-        g_printerr("Failed to create videoconvert.\n");
-        return -1;
-    }
-
-   if (!queue ) {
-        g_printerr("Failed to create queue.\n");
-        return -1;
-    }
-
-   if ( !encoder) {
-        g_printerr("Failed to create encoder.\n");
-        return -1;
-    }
-
-   if ( !muxer ) {
-        g_printerr("Failed to create muxer.\n");
-        return -1;
-    }
-
-   if ( !sink) {
-        g_printerr("Failed to create sink.\n");
+    if (!source || !videoconvert || !queue || !encoder || !muxer || !sink) {
+        g_printerr("Failed to create elements.\n");
         return -1;
     }
 
@@ -71,7 +46,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Set properties
-    g_object_set(G_OBJECT(sink), "uri", "srt://192.168.207.58:5000?mode=listener&latency=2000", NULL);
+    g_object_set(G_OBJECT(sink), "uri", "srt://192.168.20.15:5000?mode=listener&latency=120", NULL);
     g_object_set(G_OBJECT(encoder), "bitrate", 2000, "speed-preset", 1, "tune", 4, NULL); // speed-preset=superfast (1), tune=zerolatency (4)
 
     // Start playing the pipeline
