@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Set properties
-    g_object_set(G_OBJECT(sink), "uri", "srt://192.168.1.100:5000?latency=2000", NULL);
+    g_object_set(G_OBJECT(sink), "uri", "srt://192.168.20.15:5000?mode=listener&latency=120", NULL);
     g_object_set(G_OBJECT(encoder), "bitrate", 2000, "speed-preset", 1, "tune", 4, NULL); // speed-preset=superfast (1), tune=zerolatency (4)
 
     // Start playing the pipeline
