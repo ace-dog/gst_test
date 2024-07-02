@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     source = gst_element_factory_make("ximagesrc", "source");
     videoconvert = gst_element_factory_make("videoconvert", "videoconvert");
     queue = gst_element_factory_make("queue", "queue");
-    encoder = gst_element_factory_make("x264enc", "encoder");
+    encoder = gst_element_factory_make("x265enc", "encoder");
     muxer = gst_element_factory_make("mpegtsmux", "muxer");
     sink = gst_element_factory_make("srtsink", "sink");
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
     // Set properties
     g_object_set(G_OBJECT(sink), "uri", "srt://192.168.20.15:5000?mode=listener&latency=120", NULL);
-    g_object_set(G_OBJECT(encoder), "bitrate", 2000, "speed-preset", 1, "tune", 4, NULL); // speed-preset=superfast (1), tune=zerolatency (4)
+    // g_object_set(G_OBJECT(encoder), "bitrate", 2000, "speed-preset", 1, "tune", 4, NULL); // speed-preset=superfast (1), tune=zerolatency (4)
 
     // Start playing the pipeline
     gst_element_set_state(pipeline, GST_STATE_PLAYING);
