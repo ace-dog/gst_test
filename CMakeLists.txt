@@ -11,19 +11,19 @@ pkg_check_modules(GST_PLUGINS REQUIRED
     gstreamer-plugins-bad-1.0
 )
 
-MESSAGE("GST_INCLUDE_DIRS ${GST_INCLUDE_DIRS}")
-MESSAGE("GST_LIBRARIES ${GST_LIBRARIES}")
-MESSAGE("GST_CFLAGS_OTHER ${GST_CFLAGS_OTHER}")
+macro(create_exe project)
+    add_executable(${project} ./src/${project}.cpp)
+    target_include_directories(${project} PRIVATE ${GST_INCLUDE_DIRS}  ${GSTREAMER_INCLUDE_DIRS} ${GST_BASE_INCLUDE_DIRS} ${GST_GOOD_INCLUDE_DIRS} ${GST_BAD_INCLUDE_DIRS})
+    target_link_libraries(${project} ${GST_LIBRARIES} ${GSTREAMER_LIBRARIES} ${GST_BASE_LIBRARIES} ${GST_GOOD_LIBRARIES} ${GST_BAD_LIBRARIES})
+    target_compile_options(${project} PRIVATE ${GST_CFLAGS_OTHER})
+endmacro()
 
-SET(APP_NAME dkt_to_srt)
-add_executable(${APP_NAME} ./src/${APP_NAME}.cpp)
-target_include_directories(${APP_NAME} PRIVATE ${GST_INCLUDE_DIRS}  ${GSTREAMER_INCLUDE_DIRS} ${GST_BASE_INCLUDE_DIRS} ${GST_GOOD_INCLUDE_DIRS} ${GST_BAD_INCLUDE_DIRS})
-target_link_libraries(${APP_NAME} ${GST_LIBRARIES} ${GSTREAMER_LIBRARIES} ${GST_BASE_LIBRARIES} ${GST_GOOD_LIBRARIES} ${GST_BAD_LIBRARIES})
-target_compile_options(${APP_NAME} PRIVATE ${GST_CFLAGS_OTHER})
+set(APP_LIST 
+    "dkt_to_srt" 
+    "dkt_to_mpegts_appsink"
+)
 
+foreach(ITEM IN LISTS APP_LIST)
+    create_exe(${ITEM})
+endforeach()
 
-SET(APP_NAME dkt_to_appsink)
-add_executable(${APP_NAME} ./src/${APP_NAME}.cpp)
-target_include_directories(${APP_NAME} PRIVATE ${GST_INCLUDE_DIRS}  ${GSTREAMER_INCLUDE_DIRS} ${GST_BASE_INCLUDE_DIRS} ${GST_GOOD_INCLUDE_DIRS} ${GST_BAD_INCLUDE_DIRS})
-target_link_libraries(${APP_NAME} ${GST_LIBRARIES} ${GSTREAMER_LIBRARIES} ${GST_BASE_LIBRARIES} ${GST_GOOD_LIBRARIES} ${GST_BAD_LIBRARIES})
-target_compile_options(${APP_NAME} PRIVATE ${GST_CFLAGS_OTHER})

@@ -71,8 +71,8 @@ int main(int argc, char *argv[]) {
     }
 
     // Set properties
-    g_object_set(G_OBJECT(source), "use-damage", FALSE, NULL);
-    g_object_set(G_OBJECT(encoder), "bitrate", 5000, "speed-preset", 1, "tune", "zerolatency", NULL);
+    // g_object_set(G_OBJECT(source), "use-damage", FALSE, NULL);
+    // g_object_set(G_OBJECT(encoder), "bitrate", 5000, "speed-preset", 1, "tune", "zerolatency", NULL);
     g_object_set(G_OBJECT(sink), "emit-signals", TRUE, "sync", FALSE, NULL);
     g_signal_connect(sink, "new-sample", G_CALLBACK(on_new_sample), NULL);
 
